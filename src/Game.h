@@ -40,6 +40,7 @@ public:
 
 	bool isMoveValid(int row, int col);
 	bool isDraw();
+	bool isGameOver();
 	void makeMove(int row, int col);
 
 	virtual ~Game();

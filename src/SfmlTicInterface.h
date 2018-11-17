@@ -13,6 +13,9 @@
 
 namespace tic {
 
+const std::string TEX_FILE_CROSS = "assets/X.jpg";
+const std::string TEX_FILE_NOUGHT = "assets/O.jpg";
+
 class SfmlTicInterface {
 private:
 	Game game;
@@ -20,6 +23,10 @@ private:
 	sf::RenderWindow window;
 	sf::VideoMode videoMode;
 	sf::RectangleShape gameBox;
+	sf::Texture noughtTex, crossTex;
+
+	sf::Vector2i convertToGameCoords(sf::Vector2f);
+	sf::Vector2f convertToGUICoords(int row, int col);
 public:
 	SfmlTicInterface();
 	void resetGame();

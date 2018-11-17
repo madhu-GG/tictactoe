@@ -164,6 +164,12 @@ bool Game::isDraw()
 			(this->num_moves >= MAX_MOVES));
 }
 
+bool Game::isGameOver()
+{
+	return (this->num_moves >= MAX_MOVES) ||
+			(this->winner != PieceType::EMPTY);
+}
+
 void Game::makeMove(int row, int col)
 {
 	if (!this->isMoveValid(row, col))
