@@ -75,6 +75,15 @@ public:
 	 * returns:       Nil.
 	 * */
 	SfmlTicInterface();
+
+	/* function name: SfmlTicInterface::resetGame()
+	 *
+	 * description:   Resets the board to all empty and move counter to 0.
+	 *
+	 * arguments:     Nil.
+	 *
+	 * returns:       Nil.
+	 * */
 	void resetGame();
 
 	/* function name: SfmlTicInterface::handleEvents()
