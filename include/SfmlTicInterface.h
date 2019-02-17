@@ -62,6 +62,17 @@ private:
 	 * */
 	sf::Vector2f convertToGUICoords(int row, int col);
 
+	/* function name: SfmlTicInterface::updateView (sf::Vector2f resz)
+	 *
+	 * description:   scales the SFML view to a fraction of the width and height stored in resz vector.
+	 *
+	 * arguments:
+	 *                resz - the vector containing width and height to use for scaling.
+	 *
+	 * returns:       Nil.
+	 *
+	 * */
+	void updateView (sf::Vector2f resz);
 public:
 
 	/* function name: SfmlTicInterface::SfmlTicInterface()

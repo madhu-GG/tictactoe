@@ -181,6 +181,34 @@ void SfmlTicInterface::updateGUI()
 	this->window.display();
 }
 
+/* function name: SfmlTicInterface::updateView (sf::Vector2f resz)
+ *
+ * description:   scales the SFML view to a fraction of the width and height stored in resz vector.
+ *
+ * arguments:
+ *                resz - the vector containing width and height to use for scaling.
+ *
+ * returns:       Nil.
+ *
+ * */
+void SfmlTicInterface::updateView(sf::Vector2f resz)
+{
+	sf::Vector2f sz;
+	this->window.setView(sf::View(sf::FloatRect(0, 0, resz.x, resz.y)));
+	sz = static_cast<sf::Vector2f>(this->window.getSize());
+
+	std::cout << __func__ << " window size: " << sz.x << ", " << sz.y << std::endl;
+
+	sz.x = (sz.x * 3) / 4;
+	sz.y = (sz.y * 3) / 4;
+
+	std::cout << __func__ << " scaled size: " << sz.x << ", " << sz.y << std::endl;
+
+	this->gameBox.setPosition(100,100);
+	this->gameBox.setSize(sz);
+
+}
+
 /* function name: SfmlTicInterface::handleEvents()
  *
  * description:   polls the RenderWindow for events: mouse click,
@@ -196,7 +224,6 @@ void SfmlTicInterface::updateGUI()
 void SfmlTicInterface::handleEvents()
 {
 	sf::Event event;
-	sf::Vector2f sz;
 	while (this->window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
@@ -205,20 +232,8 @@ void SfmlTicInterface::handleEvents()
 		}
 		else if (event.type == sf::Event::Resized)
 		{
-			this->window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
 			std::cout << __func__ << " window resized!" << std::endl;
-			sf::Vector2f sz;
-			sz = static_cast<sf::Vector2f>(this->window.getSize());
-
-			std::cout << __func__ << " window size: " << sz.x << ", " << sz.y << std::endl;
-
-			sz.x = (sz.x * 3) / 4;
-			sz.y = (sz.y * 3) / 4;
-
-			std::cout << __func__ << " scaled size: " << sz.x << ", " << sz.y << std::endl;
-
-			this->gameBox.setPosition(100,100);
-			this->gameBox.setSize(sz);
+			this->updateView(sf::Vector2f(event.size.width,event.size.height));
 		}
 		else if (event.type == sf::Event::MouseButtonPressed)
 		{
@@ -261,6 +276,7 @@ void SfmlTicInterface::handleEvents()
  * */
 void SfmlTicInterface::run()
 {
+	this->updateView(static_cast<sf::Vector2f>(this->window.getSize()));
 	while (this->window.isOpen())
 	{
 		this->handleEvents();
