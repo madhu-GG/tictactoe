@@ -1,6 +1,5 @@
 .PHONY: clean
 
-CXX=g++
 STD=-std=c++11
 INC_DIR=include
 SRC_DIR=src
